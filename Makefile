@@ -1,6 +1,6 @@
 CC?=gcc
-INCLUDES?=-I/usr/local/include
-LIBDIRS?=-L/usr/local/lib
+INCLUDES?=-I/usr/local/include -I/home/users/guus/mingw/usr/local/include
+LIBDIRS?=-L/usr/local/lib -L/home/users/guus/mingw/usr/local/lib
 LIB?=-lz -lcrypto
 
 OS=$(shell uname)

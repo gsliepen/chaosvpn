@@ -2,13 +2,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#ifndef WIN32
 #include <sys/socket.h>
+#endif
 
 #include "chaosvpn.h"
 
 static struct peer_config *my_config = NULL;
 static struct list_head done_unknown_warnings;
 static bool parse_key_mode;
+
+#ifdef WIN32
+static char *
+strtok_r(char *str, const char *delim, char **nextp)
+{
+  char *ret;
+
+  if (!str)
+    str = *nextp;
+  else
+    str += strspn(str, delim);
+
+  if (!*str)
+    return NULL;
+
+  ret = str;
+  str += strcspn(str, delim);
+
+  if (*str)
+    *str++ = '\0';
+
+  *nextp = str;
+  return ret;
+}
+#endif
 
 static char*
 parser_check_configitem(char *line, char *config)

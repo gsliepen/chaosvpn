@@ -9,8 +9,8 @@
 #include <time.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <sys/socket.h>
 #ifndef WIN32
+#include <sys/socket.h>
 #include <pwd.h>
 #endif
 

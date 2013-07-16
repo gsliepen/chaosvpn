@@ -1,6 +1,17 @@
 #ifndef __CHAOSVPN_H
 #define __CHAOSVPN_H
 
+#ifdef WIN32
+#ifndef WINVER
+#define WINVER WindowsXP
+#endif
+
+#include <w32api.h>
+#include <winsock2.h>
+#include <windows.h>
+#include <ws2tcpip.h>
+#endif
+
 #include <stdbool.h>
 #include <time.h>
 #include <sys/stat.h>
@@ -22,15 +33,6 @@
 #endif
 
 #ifdef WIN32
-#ifndef WINVER
-#define WINVER WindowsXP
-#endif
-
-#include <w32api.h>
-#include <winsock2.h>
-#include <windows.h>
-#include <ws2tcpip.h>
-
 #define mkdir(a,b) mkdir(a)
 #define COMMENT "rem "
 #define SCRIPT ".bat"

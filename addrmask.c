@@ -1,9 +1,9 @@
 #include <string.h>
-#include <sys/socket.h>
 #ifndef WIN32
+#include <sys/socket.h>
 #include <arpa/inet.h>
-#endif
 #include <netinet/in.h>
+#endif
 
 #include "chaosvpn.h"
 #include "addrmask.h"
@@ -21,7 +21,6 @@
   ((f) == AF_INET6 ? ADDR_V6_BYTES : \
    (f) == AF_INET ? ADDR_V4_BYTES : \
    (/* error */ ADDR_V6_BYTES))
-
 
 static void mask_addr(unsigned char *addr_bytes, unsigned addr_byte_count, unsigned network_bits)
 {

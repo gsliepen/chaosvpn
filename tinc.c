@@ -4,7 +4,9 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/param.h>
+#ifndef WIN32
 #include <sys/socket.h>
+#endif
 #include <unistd.h>
 
 #include "chaosvpn.h"
@@ -12,7 +14,7 @@
 static bool tinc_add_subnet(struct string*, struct list_head*);
 
 #define CONCAT(buffer, value)	if (string_concat(buffer, value)) return false
-#define CONCAT_F(buffer, format, value)	if (string_concat_sprintf(buffer, format, value)) return false
+#define CONCAT_F(buffer, format, value...)	if (string_concat_sprintf(buffer, format, value)) return false
 #define CONCAT_DF(buffer, format, value, default_value)	if (string_concat_sprintf(buffer, format, str_is_nonempty(value) ? value : default_value)) return false
 #define CONCAT_YN(buffer, format, value)    if (string_concat_sprintf(buffer, format, (value ? "yes" : "no"))) return false
 #define CONCAT_SN(buffer, value)	if (!tinc_add_subnet(buffer, value)) return false
